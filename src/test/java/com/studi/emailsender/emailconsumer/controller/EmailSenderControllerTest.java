@@ -15,13 +15,12 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(EmailSenderController.class) // ajuste para sua classe de controller correta
+@WebMvcTest(EmailSenderController.class)
 class EmailSenderControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    // Mock do bean que falta no contexto
     @MockBean
     private RabbitTemplate rabbitTemplate;
 
@@ -63,7 +62,6 @@ class EmailSenderControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isInternalServerError())
-                // preferível checar existencia do campo de erro se a mensagem exata variar entre controllers
                 .andExpect(jsonPath("$.error").exists());
 
         verify(rabbitTemplate, times(1)).convertAndSend(anyString(), anyString(), any(ContactRequestDTO.class));

@@ -1,4 +1,4 @@
-package com.studi.grupo3.emailconsumer;
+package com.studi.emailsender.emailconsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

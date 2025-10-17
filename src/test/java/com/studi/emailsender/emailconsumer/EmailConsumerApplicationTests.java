@@ -1,4 +1,4 @@
-package com.studi.grupo3.emailconsumer;
+package com.studi.emailsender.emailconsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

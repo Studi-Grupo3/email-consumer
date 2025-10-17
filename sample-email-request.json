@@ -1,6 +1,0 @@
-{
-  "to": "recipient@example.com",
-  "from": "sender@example.com",
-  "subject": "Test Email from RabbitMQ Consumer",
-  "body": "This is a test email message sent through RabbitMQ queue. If you're seeing this in the logs, the consumer is working correctly!"
-}

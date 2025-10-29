@@ -15,9 +15,6 @@ public class EmailSenderService {
 
     private final JavaMailSender mailSender;
 
-    @Value("${contato.email.destino:}")
-    private String contatoDestino;
-
     @Value("${contato.email.remetente:noreply@example.com}")
     private String remetentePadrao;
 
@@ -26,12 +23,12 @@ public class EmailSenderService {
     }
 
     public void sendContactEmail(ContactRequestDTO dto) {
-        if (contatoDestino == null || contatoDestino.isBlank()) {
+        if (dto.email() == null || dto.email().isBlank()) {
             throw new IllegalStateException("Destino de contato não configurado (contato.email.destino)");
         }
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(remetentePadrao);
-        message.setTo(contatoDestino);
+        message.setTo(dto.email());
         message.setSubject("Novo contato de " + dto.nome());
 
         StringBuilder corpo = new StringBuilder();
@@ -42,8 +39,7 @@ public class EmailSenderService {
             corpo.append("Celular: ").append(dto.celular()).append("\n");
         }
         corpo.append("\nMensagem:\n").append(dto.mensagem()).append("\n");
-        corpo.append("\n--\nEnviado automaticamente.");
-
+        
         message.setText(corpo.toString());
 
         log.info("Enviando e-mail de contato: {}", message);

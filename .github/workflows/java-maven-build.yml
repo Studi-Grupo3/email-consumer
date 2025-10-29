@@ -1,0 +1,8 @@
+name: Build Maven Java
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analysis:
+    uses: Studi-Grupo3/reusable-workflows/.github/workflows/java-build.yml@main
